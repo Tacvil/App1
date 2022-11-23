@@ -1,25 +1,26 @@
 package com.example.myapplication
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-@SuppressLint("StaticFieldLeak")
-private lateinit var textView2: TextView
-@SuppressLint("StaticFieldLeak")
-private lateinit var editText1: EditText
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import com.example.myapplication.databinding.ActivityMainBinding
+
 class MainActivity : AppCompatActivity() {
+
+   lateinit var navController: NavController
+   private lateinit var bindingMain: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        textView2 = findViewById(R.id.textView2)
-        editText1 = findViewById(R.id.editText1)
+        bindingMain = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(bindingMain.root)
+
+        initUI()
     }
-    fun showMe (view: View) {
-        val countString = editText1.getText().toString()
-        val string: String = "Привет, $countString!"
-        textView2.text = string
+
+    private fun initUI() {
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        MAIN = this
     }
 }

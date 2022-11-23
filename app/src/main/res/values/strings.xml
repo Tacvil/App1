@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="b_signIn">Sign in</string>
+    <string name="authorization">Authorization</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="textView">TextView</string>
 </resources>
