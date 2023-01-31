@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.asLiveData
 import com.example.myapplication.databinding.FragmentAuthorizationBinding
+import com.example.myapplication.room.MainDb
 
 class AuthorizationFragment : Fragment() {
 
-    private val dataModel: DataModel by activityViewModels()
     private lateinit var bindingAuth: FragmentAuthorizationBinding
 
     override fun onCreateView(
@@ -24,14 +24,26 @@ class AuthorizationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val db = MainDb.getDb(this)
         bindingAuth.bHome.setOnClickListener {
-            if (bindingAuth.loginInput.text.toString() == "test" && bindingAuth.passwordInput.text.toString() == "test"){
-                MAIN.navController.navigate(R.id.action_authorizationFragment_to_homeFragment)
-            } else {
-             Toast.makeText(activity,"Username or password is incorrect. Try again!", Toast.LENGTH_SHORT).show()
+            var accFound = 0
+            db.getDao().getAllItem().asLiveData().observe(viewLifecycleOwner) {
+                it.forEach {
+                    if (bindingAuth.loginInput.text.toString() == it.name && bindingAuth.passwordInput.text.toString() == it.passWord) {
+                        accFound = 1; return@forEach
+                    }
+                }
+                if (accFound == 1){
+                    MAIN.navController.navigate(R.id.action_authorizationFragment_to_homeFragment)
+                    Toast.makeText(activity,"Hello, ${bindingAuth.loginInput.text.toString()}, you have successfully logged in!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(activity,"Username or password is incorrect. Try again or sign up!", Toast.LENGTH_SHORT).show()
+                }
             }
-            dataModel.loginName.value = "Hello, ${bindingAuth.loginInput.text.toString()}, you have successfully logged in!"
+        }
+
+        bindingAuth.bRegistration.setOnClickListener {
+            MAIN.navController.navigate(R.id.action_authorizationFragment_to_registrationFragment3)
         }
     }
 }

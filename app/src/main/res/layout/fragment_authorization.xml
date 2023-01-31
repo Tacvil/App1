@@ -14,24 +14,56 @@
             android:id="@+id/bHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
             android:text="@string/b_signIn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+        <TextView
+            android:id="@+id/bRegistration"
+            android:layout_width="152dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:background="@color/screenBackground"
+            android:clickable="true"
+            android:gravity="center"
+            android:minHeight="48dp"
+            android:text="@string/create_an_account"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bHome"
+            app:layout_constraintVertical_bias="0.506"
+            tools:ignore="MissingConstraints,TextContrastCheck" />
 
         <TextView
             android:id="@+id/textViewAuthorization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="24dp"
             android:text="@string/authorization"
             android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.283"
+            app:layout_constraintHorizontal_bias="0.218"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout3"
@@ -46,7 +78,9 @@
                 android:id="@+id/loginInput"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/login" />
+                android:hint="@string/login"
+                android:textColorHint="#616161"
+                tools:ignore="TextContrastCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -63,7 +97,10 @@
                 android:id="@+id/passwordInput"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/password" />
+                android:hint="@string/password"
+                android:textColorHint="#616161"
+                tools:ignore="TextContrastCheck" />
         </com.google.android.material.textfield.TextInputLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
